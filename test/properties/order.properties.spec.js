@@ -66,6 +66,17 @@ describe('Property-Based Tests for Orders', () => {
       );
     });
 
+    // My in-class participation example
+    it('tax should always be non-negative integer', () => {
+      fc.assert(
+        fc.property(orderArb, (order) => {
+          const result = tax(order, {});
+          return result >= 0;
+        }),
+        { numRuns: 50 }
+      );
+    });
+
     // ---------------------------------------------------------------------------
     // Add more invariant properties for discounts, tax, delivery, and total here
     // You can adapt the starter code below.
